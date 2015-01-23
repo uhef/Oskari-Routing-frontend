@@ -25,6 +25,10 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     getName : function () {
       return this.__name;
     },
+    start: function() {
+      var sandbox = Oskari.getSandbox();
+      console.log('Starting bundle with sandbox: ', sandbox);
+    },
     eventHandlers: {
       'MapClickedEvent': function (event) {
         console.log('Map clicked at', event.getLonLat());
