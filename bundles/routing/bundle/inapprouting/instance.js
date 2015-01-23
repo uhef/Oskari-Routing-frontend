@@ -25,13 +25,12 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     getName : function () {
       return this.__name;
     },
-    start: function() {
-      var sandbox = Oskari.getSandbox();
-      console.log('Starting bundle with sandbox: ', sandbox);
-    },
     eventHandlers: {
       'MapClickedEvent': function (event) {
-        console.log('Map clicked at', event.getLonLat());
+        console.log('Map clicked at ' + event.getLonLat());
+        var sandbox = Oskari.getSandbox();
+        var url = sandbox.getAjaxUrl() + 'action_route=CalculateRoute';
+        jQuery.getJSON(url, function(data) { console.log('Great success: ', data) });
       }
     },
     /**
