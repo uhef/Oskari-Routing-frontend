@@ -9,8 +9,7 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
    * @static
    */
   function () {
-    // Best practice is to initialize instance variables here.
-    this.myVar = undefined;
+    this.endpoints = [];
   }, {
     /**
      * @static
@@ -28,24 +27,39 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     eventHandlers: {
       'MapClickedEvent': function (event) {
         console.log('Map clicked at ' + event.getLonLat());
-        var sandbox = Oskari.getSandbox();
-        var url = sandbox.getAjaxUrl() + 'action_route=CalculateRoute';
-        jQuery.ajax({
-          dataType: 'json',
-          url: url,
-          context: this,
-          data: {
-            lol: 123
-          },
-          success: function(data) {
-            var map = this.sandbox._modulesByName.MainMapModule.getMap();
-            var geoJSON = new OpenLayers.Format.GeoJSON();
-            var styleMap = new OpenLayers.StyleMap({ strokeWidth: 16, stokeColor: '#000000' });
-            var layer = new OpenLayers.Layer.Vector("routing", { styleMap: styleMap });
-            map.addLayer(layer);
-            layer.addFeatures(geoJSON.read(data));
-          }
-        });
+        this.endpoints.push(event.getLonLat());
+        if (this.endpoints.length === 2) {
+          var startPoint = {
+            lon: this.endpoints[0].lon,
+            lat: this.endpoints[0].lat
+          };
+          var endPoint = {
+            lon: this.endpoints[1].lon,
+            lat: this.endpoints[1].lat
+          };
+          this.endpoints = [];
+          var sandbox = Oskari.getSandbox();
+          var url = sandbox.getAjaxUrl() + 'action_route=CalculateRoute';
+          jQuery.ajax({
+            dataType: 'json',
+            url: url,
+            context: this,
+            data: {
+              startLon: startPoint.lon,
+              startLat: startPoint.lat,
+              endLon: endPoint.lon,
+              endLat: endPoint.lat
+            },
+            success: function (data) {
+              var map = this.sandbox._modulesByName.MainMapModule.getMap();
+              var geoJSON = new OpenLayers.Format.GeoJSON();
+              var styleMap = new OpenLayers.StyleMap({strokeWidth: 16, stokeColor: '#000000'});
+              var layer = new OpenLayers.Layer.Vector("routing", {styleMap: styleMap});
+              map.addLayer(layer);
+              layer.addFeatures(geoJSON.read(data));
+            }
+          });
+        }
       }
     },
     /**
@@ -55,7 +69,6 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
      */
     afterStart: function (sandbox) {
       console.log('Bundle', this.getName(), 'started');
-      this.myVar = 'foobar';
     }
   }, {
     "extend" : ["Oskari.userinterface.extension.DefaultExtension"]
