@@ -34,6 +34,9 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
           dataType: 'json',
           url: url,
           context: this,
+          data: {
+            lol: 123
+          },
           success: function(data) {
             var map = this.sandbox._modulesByName.MainMapModule.getMap();
             var geoJSON = new OpenLayers.Format.GeoJSON();
