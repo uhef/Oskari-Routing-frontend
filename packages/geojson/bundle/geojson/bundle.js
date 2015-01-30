@@ -16,6 +16,9 @@ function() {
             "src": "../../../../bundles/geojson/bundle/geojson/GeoJSONPlugin.js"
         }, {
             "type": "text/javascript",
+            "src": "../../../../bundles/geojson/bundle/geojson/request/AddGeoJSONRequest.js"
+        }, {
+            "type": "text/javascript",
             "src": "../../../../bundles/geojson/bundle/geojson/request/AddGeoJSONRequestHandler.js"
         }, {
             "type": "text/javascript",

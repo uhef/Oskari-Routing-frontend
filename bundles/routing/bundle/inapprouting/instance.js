@@ -102,6 +102,9 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
                 endLat: endPoint.lat
               },
               success: function (data) {
+                var requestBuilder = sandbox.getRequestBuilder('GeoJSONPlugin.AddGeoJSONRequest');
+                var request = requestBuilder(data);
+                sandbox.request(this.getName(), request);
                 var geoJSON = new OpenLayers.Format.GeoJSON();
                 this.layer.removeAllFeatures();
                 this.layer.addFeatures(geoJSON.read(data));
