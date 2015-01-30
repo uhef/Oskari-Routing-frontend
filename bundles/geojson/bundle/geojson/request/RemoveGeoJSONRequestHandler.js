@@ -3,7 +3,6 @@ Oskari.clazz.define("Oskari.geojson.bundle.geojson.request.RemoveGeoJSONRequestH
     this.geoJsonPlugin = plugin;
   }, {
     handleRequest: function (core, request) {
-      console.log('RemoveGeoJSONRequestHandler::handleRequest called');
       this.geoJsonPlugin.removeGeoJSON(request.getGroupId());
     }
   }, {

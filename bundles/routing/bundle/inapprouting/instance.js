@@ -1,13 +1,4 @@
-/**
- * This bundle logs the map click coordinates to the console. This is a demonstration of using DefaultExtension.
- *
- * @class Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstance
- */
 Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstance',
-  /**
-   * @method create called automatically on construction
-   * @static
-   */
   function () {
     this.sandbox = null;
     this.endpoints = [];
@@ -53,13 +44,11 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
         }
       }
 
-      //Let's extend UI
       var reqName = 'userinterface.AddExtensionRequest',
         reqBuilder = sandbox.getRequestBuilder(reqName),
         request = reqBuilder(this);
       sandbox.request(this, request);
 
-      // draw ui
       me.createUi();
     },
     "init": function () { return null; },
@@ -145,15 +134,6 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     createUi: function () {
       this.plugins['Oskari.userinterface.Flyout'].createUi();
       this.plugins['Oskari.userinterface.Tile'].refresh();
-    },
-    setState: function (state) {
-      console.log('inapprouting.instance.setState called with ', state);
-    },
-    getState: function () {
-      console.log('inapprouting.instance.getState called');
-    },
-    afterStart: function (sandbox) {
-      console.log('Bundle', this.getName(), 'started');
     }
   }, {
     "protocol": [
