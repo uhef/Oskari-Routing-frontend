@@ -1,5 +1,7 @@
 Oskari.registerLocalization({
     "lang": "en",
-    "key": "InAppRouting",
-    "value": {}
+    "key": "inapprouting",
+    "value": {
+        "title": "Routing"
+    }
 });

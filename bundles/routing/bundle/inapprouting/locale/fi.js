@@ -1,5 +1,7 @@
 Oskari.registerLocalization({
     "lang": "fi",
-    "key": "InAppRouting",
-    "value": {}
+    "key": "inapprouting",
+    "value": {
+        "title": "Reititys"
+    }
 });

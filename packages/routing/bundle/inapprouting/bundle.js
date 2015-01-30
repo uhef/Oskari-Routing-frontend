@@ -9,11 +9,14 @@ Oskari.clazz.define("Oskari.routing.bundle.inapprouting.InAppRoutingBundle",
    "update" : function(manager, bundle, bi, info) {}
   },
  {
-    "protocol" : ["Oskari.bundle.Bundle"],
+    "protocol" : ["Oskari.bundle.Bundle", "Oskari.mapframework.bundle.extension.ExtensionBundle"],
     "source" : {
       "scripts" : [{
         "type" : "text/javascript",
         "src" : "../../../../bundles/routing/bundle/inapprouting/instance.js"
+      }, {
+        "type": "text/javascript",
+        "src": "../../../../bundles/routing/bundle/inapprouting/Tile.js"
       }],
       "locales" : [{
         "lang" : "fi",
@@ -55,12 +58,12 @@ Oskari.clazz.define("Oskari.routing.bundle.inapprouting.InAppRoutingBundle",
           "en" : {}
         },
         "Bundle-Version" : "1.0.0",
-        "Import-Namespace" : ["Oskari"],
+        "Import-Namespace" : ["Oskari", "jquery"],
         "Import-Bundle" : {}
       }
     },
 
-   "dependencies" : []
+   "dependencies" : ["jquery"]
   });
 
 Oskari.bundle_manager.installBundleClass("inapprouting", "Oskari.routing.bundle.inapprouting.InAppRoutingBundle");

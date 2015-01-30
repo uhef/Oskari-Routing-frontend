@@ -9,20 +9,72 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
    * @static
    */
   function () {
+    this.sandbox = null;
     this.endpoints = [];
+    this.plugins = {};
+    this.localization = null;
+    this.started = false;
   }, {
-    /**
-     * @static
-     * @property __name
-     */
-    __name : 'inapprouting',
-    /**
-     * Module protocol method
-     *
-     * @method getName
-     */
-    getName : function () {
-      return this.__name;
+    __name: 'inapprouting',
+    getName: function () { return this.__name; },
+    setSandbox: function (sandbox) { this.sandbox = sandbox; },
+    getSandbox: function () { return this.sandbox; },
+    getLocalization: function (key) {
+      if (!this.localization) {
+        this.localization = Oskari.getLocalization(this.getName());
+      }
+      if (key && this.localization[key]) {
+        return this.localization[key];
+      }
+      return null;
+    },
+    "start": function () {
+      var me = this;
+
+      if (me.started) {
+        return;
+      }
+
+      me.started = true;
+
+      var conf = this.conf,
+        sandboxName = (conf ? conf.sandbox : null) || 'sandbox',
+        sandbox = Oskari.getSandbox(sandboxName);
+
+      me.sandbox = sandbox;
+
+      this.localization = Oskari.getLocalization(this.getName());
+
+      var ajaxUrl = null;
+      if (this.conf && this.conf.url) {
+        ajaxUrl = this.conf.url;
+      } else {
+        ajaxUrl = sandbox.getAjaxUrl() + 'action_route=GetSearchResult';
+      }
+
+      sandbox.register(me);
+      var p;
+      for (p in me.eventHandlers) {
+        if (me.eventHandlers.hasOwnProperty(p)) {
+          sandbox.registerForEventByName(me, p);
+        }
+      }
+
+      //Let's extend UI
+      var reqName = 'userinterface.AddExtensionRequest',
+        reqBuilder = sandbox.getRequestBuilder(reqName),
+        request = reqBuilder(this);
+      sandbox.request(this, request);
+
+      // draw ui
+      me.createUi();
+    },
+    "init": function () { return null; },
+    "update": function () { },
+    onEvent: function (event) {
+      var handler = this.eventHandlers[event.getName()];
+      if (!handler) { return; }
+      return handler.apply(this, [event]);
     },
     eventHandlers: {
       'MapClickedEvent': function (event) {
@@ -62,14 +114,51 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
         }
       }
     },
-    /**
-     * DefaultExtension method for doing stuff after the bundle has started.
-     *
-     * @method afterStart
-     */
+    "stop": function () {
+      var sandbox = this.sandbox(),
+        p;
+      for (p in this.eventHandlers) {
+        if (this.eventHandlers.hasOwnProperty(p)) {
+          sandbox.unregisterFromEventByName(this, p);
+        }
+      }
+
+      var reqName = 'userinterface.RemoveExtensionRequest',
+        reqBuilder = sandbox.getRequestBuilder(reqName),
+        request = reqBuilder(this);
+
+      sandbox.request(this, request);
+
+      this.sandbox.unregister(this);
+      this.started = false;
+    },
+    startExtension: function () {
+      this.plugins['Oskari.userinterface.Tile'] =
+        Oskari.clazz.create('Oskari.routing.bundle.inapprouting.Tile',
+          this);
+    },
+    stopExtension: function () {
+      this.plugins['Oskari.userinterface.Tile'] = null;
+    },
+    getPlugins: function () { return this.plugins; },
+    getTitle: function () { return this.getLocalization('title'); },
+    getDescription: function () { return this.getLocalization('desc'); },
+    createUi: function () {
+      this.plugins['Oskari.userinterface.Tile'].refresh();
+    },
+    setState: function (state) {
+      console.log('inapprouting.instance.setState called with ', state);
+    },
+    getState: function () {
+      console.log('inapprouting.instance.getState called');
+    },
     afterStart: function (sandbox) {
       console.log('Bundle', this.getName(), 'started');
     }
   }, {
-    "extend" : ["Oskari.userinterface.extension.DefaultExtension"]
+    "protocol": [
+      'Oskari.bundle.BundleInstance',
+      'Oskari.mapframework.module.Module',
+      'Oskari.userinterface.Extension'
+    ]
   });
