@@ -4,7 +4,7 @@ Oskari.clazz.define("Oskari.geojson.bundle.geojson.request.AddGeoJSONRequestHand
   }, {
     handleRequest: function (core, request) {
       console.log('AddGeoJSONRequestHandler::handleRequest called');
-      this.geoJsonPlugin.addGeoJSON(request.getGeoJSONData());
+      this.geoJsonPlugin.addGeoJSON(request.getGeoJSONData(), request.getGroupId());
     }
   }, {
     protocol: ['Oskari.mapframework.core.RequestHandler']

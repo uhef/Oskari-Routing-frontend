@@ -118,11 +118,16 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
       console.log('getOLMapLayers called');
       return null;
     },
-    addGeoJSON: function(data) {
+    addGeoJSON: function(data, groupId) {
       console.log('**** GeoJSON Data arrived to Geo JSON plugin: ', data);
       var layer = this.getMap().getLayersByName('GeoJSON')[0];
       var geoJSON = new OpenLayers.Format.GeoJSON();
-      layer.addFeatures(geoJSON.read(data));
+      var features = geoJSON.read(data);
+      var featuresWithGroupId = _.map(features, function(feature) {
+        feature.attributes['groupId'] = groupId;
+        return feature;
+      });
+      layer.addFeatures(featuresWithGroupId);
       this.raiseLayer(layer);
     }
   }, {
