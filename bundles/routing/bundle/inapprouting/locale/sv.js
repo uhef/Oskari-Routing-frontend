@@ -3,6 +3,6 @@ Oskari.registerLocalization({
     "key": "inapprouting",
     "value": {
         "title": "Routing",
-        "inapproutingDescription": "Explanation"
+        "description": "Explanation"
     }
 });

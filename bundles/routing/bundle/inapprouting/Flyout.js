@@ -14,7 +14,7 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.Flyout',
       },
       startPlugin: function () {
           this.template = jQuery('<div class="inapproutingContainer">' +
-          '<div class="inapproutingDescription"></div>' +
+          '<div class="description"></div>' +
           '</div>');
       },
       stopPlugin: function () { },
@@ -22,10 +22,7 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.Flyout',
           return this.instance.getLocalization('title');
       },
       getTabTitle: function () { },
-      getDescription: function () {
-          return this.instance.getLocalization('desc');
-      },
-      getOptions: function () {  },
+      getOptions: function () { },
       setState: function (state) { },
       getState: function () { },
       createUi: function () {
@@ -36,8 +33,8 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.Flyout',
           var searchContainer = me.template.clone();
           me._searchContainer = searchContainer;
 
-          var searchDescription = searchContainer.find('div.inapproutingDescription');
-          searchDescription.html(me.instance.getLocalization('inapproutingDescription'));
+          var searchDescription = searchContainer.find('div.description');
+          searchDescription.html(me.instance.getLocalization('description'));
 
           flyout.append(searchContainer);
       },

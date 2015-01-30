@@ -3,6 +3,6 @@ Oskari.registerLocalization({
     "key": "inapprouting",
     "value": {
         "title": "Reititys",
-        "inapproutingDescription": "Selitys tähän"
+        "description": "Selitys tähän"
     }
 });
