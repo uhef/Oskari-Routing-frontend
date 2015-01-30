@@ -82,7 +82,8 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
                 startLon: startPoint.lon,
                 startLat: startPoint.lat,
                 endLon: endPoint.lon,
-                endLat: endPoint.lat
+                endLat: endPoint.lat,
+                algorithm: 'astar'
               },
               success: function (data) {
                 var removalRB = sandbox.getRequestBuilder('GeoJSONPlugin.RemoveGeoJSONRequest');
