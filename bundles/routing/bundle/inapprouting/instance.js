@@ -103,6 +103,7 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
             },
             success: function (data) {
               var geoJSON = new OpenLayers.Format.GeoJSON();
+              this.layer.removeAllFeatures();
               this.layer.addFeatures(geoJSON.read(data));
             }
           });
