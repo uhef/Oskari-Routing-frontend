@@ -78,13 +78,8 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
     },
     _startPluginImpl: function () {
       console.log('_startPluginImp called');
-      var me = this,
-        p;
-
+      var me = this;
       me._createGeoJSONLayer();
-
-      // Creates markers on the map
-      me.setState(this.state);
     },
     _createGeoJSONLayer: function () {
       console.log('_createGeoJSONLayer called');
@@ -98,24 +93,6 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
       return function () {
         me.raiseLayer();
       };
-    },
-    removeMarkers: function (noEvent) {
-      console.log('removeMarkers called');
-    },
-    getMapMarkerBounds: function () {
-      console.log('getMapMarkerBounds called');
-    },
-    stopMarkerAdd: function () {
-      console.log('stopMarkerAdd called');
-    },
-    addMapMarkers: function (markers) {
-      console.log('add map markers called');
-    },
-    addMapMarker: function (markerData, id, events, noEvent) {
-      console.log('addMapMarker called');
-    },
-    constructImage: function (marker) {
-      console.log('constructImage called');
     },
     raiseLayer: function (geoJSONLayer) {
       console.log('raiseLayer called');
@@ -133,42 +110,8 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
       layer.setZIndex(index);
       layer.setVisibility(true);
     },
-    raiseMarkerLayer: function (layer) {
-      console.log('raiseMarkerLayer called with ', layer);
-    },
-    hexToRgb: function (hex) {
-      console.log('hexToRgb called');
-    },
-    rgbToHex: function (rgb) {
-      console.log('rgbToHex called');
-    },
-    enableGfi: function (blnEnable) {
-      console.log('enableGfi called');
-    },
-    getLocalization: function (key) {
-      console.log('getLocalization called');
-      if (key) {
-        return this._loc[key];
-      }
-      return this._loc;
-    },
-    setState: function (state) {
-      console.log('setState called');
-    },
-    getStateParameters: function () {
-      console.log('getStateParameters called');
-    },
     getState: function () {
       console.log('getState called');
-    },
-    updateState: function () {
-      console.log('updateState called');
-    },
-    getFont: function () {
-      console.log('getFont called');
-    },
-    getIcon: function () {
-      console.log('getIcon called');
     },
     getOLMapLayers: function (layer) {
       console.log('getOLMapLayers called');
