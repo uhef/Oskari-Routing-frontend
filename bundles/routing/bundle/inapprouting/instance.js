@@ -77,36 +77,38 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     },
     eventHandlers: {
       'MapClickedEvent': function (event) {
-        console.log('Map clicked at ' + event.getLonLat());
-        this.endpoints.push(event.getLonLat());
-        if (this.endpoints.length === 2) {
-          var startPoint = {
-            lon: this.endpoints[0].lon,
-            lat: this.endpoints[0].lat
-          };
-          var endPoint = {
-            lon: this.endpoints[1].lon,
-            lat: this.endpoints[1].lat
-          };
-          this.endpoints = [];
-          var sandbox = Oskari.getSandbox();
-          var url = sandbox.getAjaxUrl() + 'action_route=CalculateRoute';
-          jQuery.ajax({
-            dataType: 'json',
-            url: url,
-            context: this,
-            data: {
-              startLon: startPoint.lon,
-              startLat: startPoint.lat,
-              endLon: endPoint.lon,
-              endLat: endPoint.lat
-            },
-            success: function (data) {
-              var geoJSON = new OpenLayers.Format.GeoJSON();
-              this.layer.removeAllFeatures();
-              this.layer.addFeatures(geoJSON.read(data));
-            }
-          });
+        if (this.plugins['Oskari.userinterface.Tile'] && this.plugins['Oskari.userinterface.Tile'].isEnabled()) {
+          console.log('Map clicked at ' + event.getLonLat());
+          this.endpoints.push(event.getLonLat());
+          if (this.endpoints.length === 2) {
+            var startPoint = {
+              lon: this.endpoints[0].lon,
+              lat: this.endpoints[0].lat
+            };
+            var endPoint = {
+              lon: this.endpoints[1].lon,
+              lat: this.endpoints[1].lat
+            };
+            this.endpoints = [];
+            var sandbox = Oskari.getSandbox();
+            var url = sandbox.getAjaxUrl() + 'action_route=CalculateRoute';
+            jQuery.ajax({
+              dataType: 'json',
+              url: url,
+              context: this,
+              data: {
+                startLon: startPoint.lon,
+                startLat: startPoint.lat,
+                endLon: endPoint.lon,
+                endLat: endPoint.lat
+              },
+              success: function (data) {
+                var geoJSON = new OpenLayers.Format.GeoJSON();
+                this.layer.removeAllFeatures();
+                this.layer.addFeatures(geoJSON.read(data));
+              }
+            });
+          }
         }
       }
     },

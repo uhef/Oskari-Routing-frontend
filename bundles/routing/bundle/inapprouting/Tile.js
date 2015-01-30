@@ -17,9 +17,11 @@ Oskari.clazz
           this.container = jQuery(el);
       },
       startPlugin: function () {
+          console.log('starting plugin');
           this.refresh();
       },
       stopPlugin: function () {
+          console.log('stopping plugin');
           this.container.empty();
       },
       getTitle: function () {
@@ -32,6 +34,7 @@ Oskari.clazz
 
       },
       setState: function (state) {
+          console.log('setting state');
       },
       refresh: function () {
           var me = this;
@@ -45,6 +48,9 @@ Oskari.clazz
           //        status.empty();
           //        status.append('(' + layers.length + ')');
 
+      },
+      isEnabled: function() {
+          return !this.container.hasClass('oskari-tile-closed');
       }
   }, {
      'protocol': ['Oskari.userinterface.Tile']
