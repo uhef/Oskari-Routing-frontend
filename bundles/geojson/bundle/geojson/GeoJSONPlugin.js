@@ -56,17 +56,14 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
     },
     _createRequestHandlers: function () {
       console.log('_createRequestHandlers called');
-      var me = this,
-        sandbox = me.getSandbox();
+      var me = this;
       return {
         'GeoJSONPlugin.AddGeoJSONRequest': Oskari.clazz.create(
           'Oskari.geojson.bundle.geojson.request.AddGeoJSONRequestHandler',
-          sandbox,
           me
         ),
         'GeoJSONPlugin.RemoveGeoJSONRequest': Oskari.clazz.create(
           'Oskari.geojson.bundle.geojson.request.RemoveGeoJSONRequestHandler',
-          sandbox,
           me
         )
       };
@@ -176,6 +173,9 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
     getOLMapLayers: function (layer) {
       console.log('getOLMapLayers called');
       return null;
+    },
+    addGeoJSON: function(data) {
+      console.log('**** GeoJSON Data arrived to Geo JSON plugin: ', data);
     }
   }, {
     'extend': ['Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin'],
