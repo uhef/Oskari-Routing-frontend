@@ -96,9 +96,13 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
                 endLat: endPoint.lat
               },
               success: function (data) {
-                var requestBuilder = sandbox.getRequestBuilder('GeoJSONPlugin.AddGeoJSONRequest');
-                var request = requestBuilder(data, 'routingFeatures');
-                sandbox.request(this.getName(), request);
+                var removalRB = sandbox.getRequestBuilder('GeoJSONPlugin.RemoveGeoJSONRequest');
+                var removalR = removalRB('routingFeatures');
+                sandbox.request(this.getName(), removalR);
+
+                var addRB = sandbox.getRequestBuilder('GeoJSONPlugin.AddGeoJSONRequest');
+                var addR = addRB(data, 'routingFeatures');
+                sandbox.request(this.getName(), addR);
               }
             });
           }

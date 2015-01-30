@@ -129,6 +129,15 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
       });
       layer.addFeatures(featuresWithGroupId);
       this.raiseLayer(layer);
+    },
+    removeGeoJSON: function(groupId) {
+      var layer = this.getMap().getLayersByName('GeoJSON')[0];
+      if(layer) {
+        var features = layer.getFeaturesByAttribute('groupId', groupId);
+        if (features && !_.isEmpty(features)) {
+          layer.removeFeatures(features);
+        }
+      }
     }
   }, {
     'extend': ['Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin'],

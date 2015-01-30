@@ -22,6 +22,9 @@ function() {
             "src": "../../../../bundles/geojson/bundle/geojson/request/AddGeoJSONRequestHandler.js"
         }, {
             "type": "text/javascript",
+            "src": "../../../../bundles/geojson/bundle/geojson/request/RemoveGeoJSONRequest.js"
+        }, {
+            "type": "text/javascript",
             "src": "../../../../bundles/geojson/bundle/geojson/request/RemoveGeoJSONRequestHandler.js"
         }],
         "locales" : []
