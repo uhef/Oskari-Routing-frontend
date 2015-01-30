@@ -11,9 +11,12 @@ Oskari.clazz.define("Oskari.routing.bundle.inapprouting.InAppRoutingBundle",
  {
     "protocol" : ["Oskari.bundle.Bundle", "Oskari.mapframework.bundle.extension.ExtensionBundle"],
     "source" : {
-      "scripts" : [{
-        "type" : "text/javascript",
-        "src" : "../../../../bundles/routing/bundle/inapprouting/instance.js"
+      "scripts": [{
+        "type": "text/javascript",
+        "src": "../../../../bundles/routing/bundle/inapprouting/instance.js"
+      }, {
+        "type": "text/javascript",
+        "src": "../../../../bundles/routing/bundle/inapprouting/Flyout.js"
       }, {
         "type": "text/javascript",
         "src": "../../../../bundles/routing/bundle/inapprouting/Tile.js"

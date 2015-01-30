@@ -133,17 +133,22 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
       this.started = false;
     },
     startExtension: function () {
+      this.plugins['Oskari.userinterface.Flyout'] =
+        Oskari.clazz.create('Oskari.routing.bundle.inapprouting.Flyout',
+          this);
       this.plugins['Oskari.userinterface.Tile'] =
         Oskari.clazz.create('Oskari.routing.bundle.inapprouting.Tile',
           this);
     },
     stopExtension: function () {
+      this.plugins['Oskari.userinterface.Flyout'] = null;
       this.plugins['Oskari.userinterface.Tile'] = null;
     },
     getPlugins: function () { return this.plugins; },
     getTitle: function () { return this.getLocalization('title'); },
     getDescription: function () { return this.getLocalization('desc'); },
     createUi: function () {
+      this.plugins['Oskari.userinterface.Flyout'].createUi();
       this.plugins['Oskari.userinterface.Tile'].refresh();
     },
     setState: function (state) {
