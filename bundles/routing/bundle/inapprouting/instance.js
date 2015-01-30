@@ -14,7 +14,6 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     this.plugins = {};
     this.localization = null;
     this.started = false;
-    this.layer = null;
   }, {
     __name: 'inapprouting',
     getName: function () { return this.__name; },
@@ -53,11 +52,6 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
           sandbox.registerForEventByName(me, p);
         }
       }
-
-      var map = sandbox._modulesByName.MainMapModule.getMap();
-      var styleMap = new OpenLayers.StyleMap({strokeWidth: 16, stokeColor: '#000000'});
-      this.layer = new OpenLayers.Layer.Vector("inapprouting", {styleMap: styleMap});
-      map.addLayer(this.layer);
 
       //Let's extend UI
       var reqName = 'userinterface.AddExtensionRequest',
@@ -105,9 +99,6 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
                 var requestBuilder = sandbox.getRequestBuilder('GeoJSONPlugin.AddGeoJSONRequest');
                 var request = requestBuilder(data);
                 sandbox.request(this.getName(), request);
-                var geoJSON = new OpenLayers.Format.GeoJSON();
-                this.layer.removeAllFeatures();
-                this.layer.addFeatures(geoJSON.read(data));
               }
             });
           }

@@ -83,7 +83,8 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
     },
     _createGeoJSONLayer: function () {
       console.log('_createGeoJSONLayer called');
-      var layer = new OpenLayers.Layer.Vector('GeoJSON');
+      var styleMap = new OpenLayers.StyleMap({strokeWidth: 16, stokeColor: '#000000'});
+      var layer = new OpenLayers.Layer.Vector('GeoJSON', {styleMap: styleMap});
       this.getMap().addLayer(layer);
       this.raiseLayer(layer);
     },
@@ -119,6 +120,10 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
     },
     addGeoJSON: function(data) {
       console.log('**** GeoJSON Data arrived to Geo JSON plugin: ', data);
+      var layer = this.getMap().getLayersByName('GeoJSON')[0];
+      var geoJSON = new OpenLayers.Format.GeoJSON();
+      layer.addFeatures(geoJSON.read(data));
+      this.raiseLayer(layer);
     }
   }, {
     'extend': ['Oskari.mapping.mapmodule.plugin.AbstractMapModulePlugin'],
