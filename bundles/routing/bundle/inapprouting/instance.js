@@ -78,7 +78,6 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     eventHandlers: {
       'MapClickedEvent': function (event) {
         if (this.plugins['Oskari.userinterface.Tile'] && this.plugins['Oskari.userinterface.Tile'].isEnabled()) {
-          console.log('Map clicked at ' + event.getLonLat());
           this.endpoints.push(event.getLonLat());
           if (this.endpoints.length === 2) {
             var startPoint = {
