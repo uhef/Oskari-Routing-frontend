@@ -45,13 +45,6 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
 
       this.localization = Oskari.getLocalization(this.getName());
 
-      var ajaxUrl = null;
-      if (this.conf && this.conf.url) {
-        ajaxUrl = this.conf.url;
-      } else {
-        ajaxUrl = sandbox.getAjaxUrl() + 'action_route=GetSearchResult';
-      }
-
       sandbox.register(me);
       var p;
       for (p in me.eventHandlers) {
