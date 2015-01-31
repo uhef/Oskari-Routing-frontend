@@ -2,9 +2,9 @@
 
 Oskari-Routing provides in-application route calculation on Oskari platform. Oskari-Routing is submit entry to [Oskari Challenge 2015](http://oskari.org/challenge).
 
-Oskari-Routing is a collection of enhancements both in the backend and in the front-end of Oskari. See [Oskari-Routing back-end](http://todo).
+Oskari-Routing is a collection of enhancements both in the backend and in the front-end of Oskari. See [Oskari-Routing back-end](https://github.com/uhef/Oskari-Routing).
 
-For instructions on how to setup Oskari for in-application routing see [Oskari-Routing back-end](http://todo).
+For instructions on how to setup Oskari for in-application routing see [Oskari-Routing back-end](https://github.com/uhef/Oskari-Routing).
 
 ## Contents
 
