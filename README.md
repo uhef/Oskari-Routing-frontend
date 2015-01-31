@@ -6,6 +6,9 @@ Oskari-Routing is a collection of enhancements both in the backend and in the fr
 
 For instructions on how to setup Oskari for in-application routing see [Oskari-Routing back-end](https://github.com/uhef/Oskari-Routing).
 
+**Video on Oskari-Routing in action**  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=ZoX0JfIi0Ik" target="_blank"><img src="http://img.youtube.com/vi/ZoX0JfIi0Ik/0.jpg" alt="Oskari-Routing YouTube video" width="240" height="180" border="10"/></a>
+
 ## Contents
 
 Oskari-Routing is a collection of improvements to Oskari to enable in-application routing. A lot of the improvements are in the back-end.  
