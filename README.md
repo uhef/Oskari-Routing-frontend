@@ -1,13 +1,24 @@
-Oskari
-======
+# Oskari-Routing front-end
 
-[Oskari](http://www.oskari.org/) Map Application Framework aims to 
-provide a framework and a collection of functionality-enhancing bundles 
-and plugins for rapid development of feature-rich GI web applications.
+Oskari-Routing provides in-application route calculation on Oskari platform. Oskari-Routing is submit entry to [Oskari Challenge 2015](http://oskari.org/challenge).
 
-Documentation available at [http://www.oskari.org].
+Oskari-Routing is a collection of enhancements both in the backend and in the front-end of Oskari. See [Oskari-Routing back-end](http://todo).
 
-## Copyright and license
+For instructions on how to setup Oskari for in-application routing see [Oskari-Routing back-end](http://todo).
 
-Copyright 2014 NLS under dual license MIT (included LICENSE-MIT.txt) and [EUPL](https://joinup.ec.europa.eu/software/page/eupl/licence-eupl)
-(any language version applies, English version is included in LICENSE-EUPL.pdf).
+## Contents
+
+Oskari-Routing is a collection of improvements to Oskari to enable in-application routing. A lot of the improvements are in the back-end.  
+Front-end improvements contain following:
+
+### Routing bundle
+
+Bundle that implements user interface for route calculation.
+
+### GeoJSON plugin
+
+Bundle that allows rendering of GeoJSON content on the Oskari front-end.
+
+## License
+
+License MIT (included LICENSE-MIT.txt)
