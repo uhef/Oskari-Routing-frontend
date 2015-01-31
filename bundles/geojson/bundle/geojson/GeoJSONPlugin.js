@@ -41,7 +41,7 @@ Oskari.clazz.define('Oskari.geojson.bundle.geojson.GeoJSONPlugin',
       me._createGeoJSONLayer();
     },
     _createGeoJSONLayer: function () {
-      var styleMap = new OpenLayers.StyleMap({strokeWidth: 16, stokeColor: '#000000'});
+      var styleMap = new OpenLayers.StyleMap({strokeWidth: 10, stokeColor: '#0006e8', strokeOpacity: 0.7});
       var layer = new OpenLayers.Layer.Vector('GeoJSON', {styleMap: styleMap});
       this.getMap().addLayer(layer);
       this.raiseLayer(layer);
