@@ -60,7 +60,8 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
     },
     eventHandlers: {
       'MapClickedEvent': function (event) {
-        if (this.plugins['Oskari.userinterface.Tile'] && this.plugins['Oskari.userinterface.Tile'].isEnabled()) {
+        if (this.plugins['Oskari.userinterface.Flyout'] && this.plugins['Oskari.userinterface.Tile'] && this.plugins['Oskari.userinterface.Tile'].isEnabled()) {
+          var algorithm = this.plugins['Oskari.userinterface.Flyout'].getAlgorithm();
           this.endpoints.push(event.getLonLat());
           if (this.endpoints.length === 2) {
             var startPoint = {
@@ -83,7 +84,7 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.InAppRoutingBundleInstan
                 startLat: startPoint.lat,
                 endLon: endPoint.lon,
                 endLat: endPoint.lat,
-                algorithm: 'astar'
+                algorithm: algorithm
               },
               success: function (data) {
                 var removalRB = sandbox.getRequestBuilder('GeoJSONPlugin.RemoveGeoJSONRequest');

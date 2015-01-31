@@ -6,7 +6,7 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.Flyout',
         this._searchContainer = null;
     }, {
       getName: function () { return 'Oskari.routing.bundle.inapprouting.Flyout'; },
-      setEl: function (el, width, height) {
+      setEl: function (el) {
           this.container = el[0];
           if (!jQuery(this.container).hasClass('inapprouting')) {
               jQuery(this.container).addClass('inapprouting');
@@ -15,6 +15,9 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.Flyout',
       startPlugin: function () {
           this.template = jQuery('<div class="inapproutingContainer">' +
           '<div class="description"></div>' +
+          '<input type="radio" name="algorithm" value="astar" checked>A-Star</input>' +
+          '<br/>' +
+          '<input type="radio" name="algorithm" value="pgr-astar">pgRouting A-Star</input>' +
           '</div>');
       },
       stopPlugin: function () { },
@@ -38,7 +41,10 @@ Oskari.clazz.define('Oskari.routing.bundle.inapprouting.Flyout',
 
           flyout.append(searchContainer);
       },
-      addTab: function (item) { }
+      addTab: function (item) { },
+      getAlgorithm: function() {
+        return jQuery('.inapproutingContainer input[name=algorithm]:checked').val();
+      }
     }, {
        'protocol': ['Oskari.userinterface.Flyout']
     });
